@@ -1,5 +1,7 @@
-export default function TestRoutepage() {
+import React from 'react'
+
+export default function page() {
   return (
-    <div>test route visible!!</div>
+    <div>page visible!!</div>
   )
 }
