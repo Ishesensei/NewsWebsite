@@ -17,6 +17,7 @@ export default function InterceptedImagePage({ params }) {
       </Link>
       <dialog className="modal" open>
         <div className="fullscreen-image">
+        <h1>InterceptedImagePage</h1>
           <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
         </div>
       </dialog>
