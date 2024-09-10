@@ -1,13 +1,14 @@
 import { DUMMY_NEWS } from '@/dummy-news';
 import React from 'react';
-import NotFound from './not-found';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 export async function generateMetadeta({ params }) {
-  const newSlug = params.slug;
+  const newsSlug = params.slug;
   const newsItem = DUMMY_NEWS.find((newsItem) => {
-    return newSlug === newsItem.slug;
+    return newsSlug === newsItem.slug;
   });
   if (!newsItem.slug) {
-    return NotFound();
+    return notFound();
   }
   return {
     title: params.slug,
@@ -15,9 +16,9 @@ export async function generateMetadeta({ params }) {
   };
 }
 export default function NewsDetailPage({ params }) {
-  const newSlug = params.slug;
+  const newsSlug = params.slug;
   const newsItem = DUMMY_NEWS.find((newsItem) => {
-    return newSlug === newsItem.slug;
+    return newsSlug === newsItem.slug;
   });
   if (!newsItem.slug) {
     return NotFound();
@@ -26,7 +27,9 @@ export default function NewsDetailPage({ params }) {
     <>
       <header>
         <article className="news-article">
-          <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
+          <Link href={`/news/${newsSlug}/image`}>
+            <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
+          </Link>
           <h1>{newsItem.title}</h1>
           <time dateTime={newsItem.date}>{newsItem.date}</time>
         </article>

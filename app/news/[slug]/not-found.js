@@ -1,7 +1,4 @@
-import React from 'react';
-
-export default function NotFound() {
- 
+export default function notFound() {
   return (
     <div id="error">
       <h1 style={{ display: 'flex', justifyContent: 'center' }}>
