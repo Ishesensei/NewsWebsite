@@ -1,23 +1,15 @@
-'use client'
-import { DUMMY_NEWS } from '@/dummy-news';
-import Link from 'next/link';
+import { getAllNews, getNewsItem } from '@/lib/news';
 import { notFound, useRouter } from 'next/navigation';
 
-export default function ImagePage({ params }) {
-  const router = useRouter()
+export default async function ImagePage({ params }) {
   const newsSlug = params.slug;
-  const newsItem = DUMMY_NEWS.find((newsItem) => {
-    return newsSlug === newsItem.slug;
-  });
+  const newsItem = await getNewsItem(newsSlug);
   if (!newsItem) {
     return notFound();
   }
   return (
-    <div className="fullscreen-image" onClick={router.back} >
-      <h2> default pageimage</h2>
-      <Link href={'.'}>
-        <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
-      </Link>
+    <div className="fullscreen-image">
+      <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
     </div>
   );
 }
